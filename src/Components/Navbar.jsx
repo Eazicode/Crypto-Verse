@@ -9,7 +9,7 @@ const Navbar = () => {
     <>
       <div className='nav-container'>
         <div className="logo-container">
-          <Avatar src='public\cryptocurrency image.png'/>
+          <Avatar src='/cryptocurrency image.png'/>
           <Typography.Title level={3} className='logo'>
             <Link to='/'>
               Cryptoverse

@@ -355,12 +355,16 @@ width: 70%;
 .search-crypto{
     margin: 20px auto 30px auto;
     width: 250px;
+    display: flex;
+    justify-content: center;
 }
 .crypto-card-container{
-    min-height: 65vh !important;
+    min-height: 75vh !important;
 }
 .crypto-card{
-    min-width: 250px;
+    min-width: 200px;
+    min-height: 100% !important;
+    
 }
 .crypto-card .crypto-image{
     width:35px;
