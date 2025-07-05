@@ -13,8 +13,8 @@ export const cryptoNewsApi = createApi({
   baseQuery: fetchBaseQuery({baseUrl}),
   endpoints: (builder) => ({
     getCryptoNewsApi: builder.query({
-      query: (count) => 
-        createRequest(`v2/trendings?topic=Cryptocurrency&language=en&country=us=${count}`)
+      query: ({newsCategory, count}) => 
+        createRequest(`v2/trendings?topic=${newsCategory}&language=en&country=us&limit=${count}`)
       }
     )
   })
