@@ -7,13 +7,12 @@ import { useState } from 'react';
 const News = ({ simplified }) => {
   const {Text, Title} = Typography;
   const {Option} = Select;
-  const count = simplified ? 5 : 10;
+  const count = simplified ? 4 : 10;
   const [newsCategory, setNewsCategory] = useState('CryptoCurrency')
   const { data:cryptoNews, isFetching} = useGetCryptoNewsApiQuery({newsCategory,count});
   const {data} = useGetCryptosQuery(100);
 
   if (isFetching) return 'Loading';
-  // console.log(cryptoNews) 
 
   return ( 
     
@@ -44,7 +43,7 @@ const News = ({ simplified }) => {
               <a href={news.url} target='_blank' rel='noreferrer'>
                 <div className="news-image-container text-[18px]">
                   <Title className='news-title' level={4}>
-                    {news.title.length > 20 ? `${news.title.substring(0, 50)}...` : news.title}
+                    {news.title.length > 15 ? `${news.title.substring(0, 50)}...` : news.title}
                   </Title>
                   <img src={news.thumbnail} className='w-[50px] h-[50px] rounded'/>
                 </div>
