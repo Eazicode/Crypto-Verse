@@ -38,7 +38,7 @@ a:hover{
     padding: 20px;
 }
 .nav-container{
-    position: fixed; 
+    /* position: fixed;  */
     left: 0;
     margin: 10px;
     height: 100vh;
@@ -77,19 +77,19 @@ a:hover{
 
 @media screen and (max-width:1300px){
     .main{
-        margin-left: 50px;
+        /* margin-left: 50px; */
     }
 }
 
 @media screen and (max-width:1170px){
     .main{
-        margin-left: 50px;
+        /* margin-left: 50px; */
     }
 }
 
 @media screen and (max-width:1000px){
     .main{
-        margin-left: 100px;
+        /* margin-left: 100px; */
     }
 }
 
@@ -320,6 +320,7 @@ width: 70%;
 .chart-header{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 50px;
     color: #0071bd;
 }
@@ -329,7 +330,7 @@ width: 70%;
 .price-container{
     display: flex !important;
     gap: 20px !important;
-    align-items: center !important;
+    align-items: flex-end !important;
     flex-wrap: wrap !important;
 }
 .price-change{

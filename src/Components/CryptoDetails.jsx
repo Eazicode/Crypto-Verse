@@ -1,20 +1,21 @@
 import HTMLReactParser from "html-react-parser/lib/index";
 import { useParams } from "react-router";
+import LineChart from "./LineChart";
 import millify from "millify";
 import {Col, Row, Typography, Select} from 'antd'
 import { MoneyCollectOutlined, DollarCircleOutlined, CheckOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, NumberOutlined, ThunderboltOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import {useGetCryptosDetailsQuery} from '../Services/cryptoApi'
+import {useGetCryptosDetailsQuery, useGetCryptoHistoryQuery} from '../Services/cryptoApi'
 
 
 const CryptoDetails = () => {
   const {Title, Text} = Typography
   const {Option} = Select
   const {coinId} = useParams()
-  const [timePeriod, setTimePeriod] = useState('7d')
+  const [timePeriod, setTimePeriod] = useState('3y')
   const {data, isFetching} = useGetCryptosDetailsQuery(coinId)
+  const {data: coinHistory} = useGetCryptoHistoryQuery({coinId, timePeriod})
   const cryptoDetails = data?.data?.coin;
-   if (isFetching) return 'Loading...'
 
   const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
 
@@ -33,6 +34,8 @@ const CryptoDetails = () => {
     { title: 'Total Supply', value: `$ ${cryptoDetails?.supply?.total && millify(cryptoDetails?.supply?.total)}`, icon: <ExclamationCircleOutlined /> },
     { title: 'Circulating Supply', value: `$ ${cryptoDetails?.supply?.circulating && millify(cryptoDetails?.supply?.circulating)}`, icon: <ExclamationCircleOutlined /> },
   ];
+  
+  if (isFetching) return 'Loading...'
 
   return ( 
     <Col className="coin-detail-container"> 
@@ -54,8 +57,15 @@ const CryptoDetails = () => {
           <Option key={date}>{date}</Option>)
         }
       </Select>
+      {
+        coinHistory?.data && 
+        <LineChart 
+          coinHistory={coinHistory} 
+          currentPrice={millify(cryptoDetails.price)}
+          coinName={cryptoDetails.name}
+        />
+      }
 
-      {/* line chart */} 
 
       <Col className="stats-container">
         <Col className="coin-value-statistics">
